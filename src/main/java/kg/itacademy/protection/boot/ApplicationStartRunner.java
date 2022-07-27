@@ -15,12 +15,13 @@ public class ApplicationStartRunner implements CommandLineRunner {
         RoleEntity roleUser = new RoleEntity();
         roleUser.setNameRole("ROLE_USER");
 
-        RoleEntity roleAdmin = new RoleEntity();
-        roleAdmin.setNameRole("ROLE_ADMIN");
+        RoleEntity roleParents = new RoleEntity();
+        roleParents.setNameRole("ROLE_PARENTS");
+
 
 
         roleRepository.save(roleUser);
-        roleRepository.save(roleAdmin);
+        roleRepository.save(roleParents);
     }
 }
 
