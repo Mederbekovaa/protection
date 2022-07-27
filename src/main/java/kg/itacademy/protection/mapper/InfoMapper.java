@@ -15,5 +15,5 @@ public interface InfoMapper {
 
     InfoModel toModel(InfoEntity infoEntity);
 
-    List<Integer> toInfoModels(List<InfoEntity> infoEntityList);
+    List<InfoModel> toInfoModels(List<InfoEntity> infoEntityList);
 }

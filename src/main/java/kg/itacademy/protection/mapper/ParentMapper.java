@@ -18,5 +18,5 @@ public interface ParentMapper {
 
     ParentModel toModel(ParentEntity parentEntity);
 
-    List<Integer> toParentModels(List<ParentEntity> parentEntityList);
+    List<ParentModel> toParentModels(List<ParentEntity> parentEntityList);
 }
