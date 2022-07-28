@@ -15,11 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParentEntity extends BaseEntity {
-//    @Column(name = "name", nullable = false)
-//    String name;
-//
-//    @Column(name = "number", nullable = false)
-//    String number;
 
     @OneToOne
     @JoinColumn(name = "parent_id", nullable = false)
