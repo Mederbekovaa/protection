@@ -16,8 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserEntity extends BaseEntity {
-
-    @Column(name = "login", nullable = true, unique = true)
+    @Column(name = "login", unique = true)
     String login;
 
     @Column(name = "email", nullable = false, unique = true)
@@ -26,9 +25,6 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = false, unique = true)
     String password;
 
-    @Column(name = "is_active", nullable = false,length = 3)
+    @Column(name = "is_active", nullable = false)
     Boolean isActive;
-
-
-
 }

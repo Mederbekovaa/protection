@@ -3,9 +3,7 @@ package kg.itacademy.protection.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,7 +15,7 @@ import javax.persistence.Table;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InfoEntity extends BaseEntity {
 
-    @Column(name = "name", nullable = false )
+    @Column(name = "name", nullable = false)
     String name;
 
     @Column(name = "age", nullable = false)
@@ -29,7 +27,7 @@ public class InfoEntity extends BaseEntity {
     @Column(name = "address", nullable = false)
     String address;
 
-    @Column(name = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     UserEntity userId;
-
 }

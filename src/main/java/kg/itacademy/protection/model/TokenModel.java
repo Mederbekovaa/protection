@@ -3,14 +3,12 @@ package kg.itacademy.protection.model;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserModel {
-    private String email;
-    private String login;
-    private String password;
-
+public class TokenModel {
+    private String token;
 }

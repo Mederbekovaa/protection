@@ -1,6 +1,7 @@
 package kg.itacademy.protection.controller;
 
 
+import kg.itacademy.protection.model.TokenModel;
 import kg.itacademy.protection.model.UserAuthModel;
 import kg.itacademy.protection.model.UserModel;
 import kg.itacademy.protection.service.UserService;
@@ -19,12 +20,12 @@ public class UserController {
     final UserService userService;
 
     @PostMapping(path = "/sign-in")
-    public String getAuthToken(@RequestBody UserAuthModel userAuthDto) {
-        return userService. getToken(userAuthDto);
+    public TokenModel getAuthToken(@RequestBody UserAuthModel userAuthDto) {
+        return userService.getToken(userAuthDto);
     }
 
     @PostMapping(path = "/sign-up")
-    public String register(@RequestBody UserModel userModel)  {
+    public TokenModel register(@RequestBody UserModel userModel) {
         return userService.createUser(userModel);
     }
 }

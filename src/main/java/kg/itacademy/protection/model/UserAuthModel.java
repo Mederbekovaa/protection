@@ -16,6 +16,4 @@ public class UserAuthModel {
 
     @NotBlank(message = "Password can't be blank")
     String password;
-
-
 }
