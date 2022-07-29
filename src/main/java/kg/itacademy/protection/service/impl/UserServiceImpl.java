@@ -72,6 +72,8 @@ public class UserServiceImpl implements UserService {
         userRoleRepository.save(userRoleEntity);
 
         return TokenModel.builder().token("Basic " + new String(Base64.getEncoder()
-                .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes()))).build();
+                .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes())))
+                .login(userEntity.getLogin())
+                .userId(userEntity.getId()).build();
     }
 }
