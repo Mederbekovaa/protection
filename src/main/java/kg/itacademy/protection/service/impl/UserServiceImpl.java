@@ -37,14 +37,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public TokenModel getToken(UserAuthModel userAuthDto) {
         UserEntity userEntity = userRepository
-                .getByEmail(userAuthDto.getLogin());
-        if (userEntity == null) {
+                .getByLogin(userAuthDto.getLogin());
+
+
+        //логика обновления deviceId.
+        //Сравниваешь из бд deviceId и из модельк deviceId, если они разные то обновляешь поле deviceId в энтити
+        //если одинаковые то ничего не обновляешь
+         if (userEntity == null) {
             throw new UserNameNotFoundException("Username not found");
         }
         boolean isMatches = passwordEncoder.matches(userAuthDto.getPassword(), userEntity.getPassword());
         if (isMatches) {
-            return TokenModel.builder().token("Basic " + new String(Base64.getEncoder()
-                    .encode((userEntity.getLogin() + ":" + userAuthDto.getPassword()).getBytes()))).build();
+            return TokenModel.builder()
+                    .token("Basic " + new String(Base64.getEncoder().encode((userEntity.getLogin() + ":" + userAuthDto.getPassword()).getBytes())))
+                    .userId(userEntity.getId())
+                    .login(userEntity.getLogin())
+                    .build();
         } else {
             throw new UserSignInException("Неправильный логин или пароль!", HttpStatus.UNAUTHORIZED);
         }

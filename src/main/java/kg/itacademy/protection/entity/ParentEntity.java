@@ -10,17 +10,16 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Table(name = "children_parents")
+@Table(name = "parents")
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParentEntity extends BaseEntity {
 
-    @OneToOne
-    @JoinColumn(name = "parent_id", nullable = false)
-    UserEntity parentId;
+    @Column(name = "name", nullable = false)
+    String name;
 
-    @OneToOne
-    @JoinColumn(name = "child_id", nullable = false)
-    UserEntity childId;
+    @Column(name = "number", nullable = false)
+    String number;
+
 }

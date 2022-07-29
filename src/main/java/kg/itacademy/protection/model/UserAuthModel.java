@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserAuthModel {
     @NotBlank(message = "Login can't be blank")
-    String Login;
+    String login;
 
     @NotBlank(message = "Password can't be blank")
     String password;

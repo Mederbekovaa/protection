@@ -10,5 +10,9 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TokenModel {
+    private Long userId;
+
+    private String login;
+
     private String token;
 }

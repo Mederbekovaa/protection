@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/user")
 @RequiredArgsConstructor
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/sign-up")
-    public TokenModel register(@RequestBody UserModel userModel) {
+    public TokenModel register(@Valid @RequestBody UserModel userModel) {
         return userService.createUser(userModel);
     }
 }
