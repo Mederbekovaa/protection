@@ -9,17 +9,23 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+//@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserModel {
+    @NotBlank
+    private String login;
+
     @NotBlank
     @Email
     private String email;
 
     @NotBlank
-    private String login;
+    private String password;
 
     @NotBlank
-    private String password;
+    private String token;
+
+    @NotBlank
+    private String role;
 
 }

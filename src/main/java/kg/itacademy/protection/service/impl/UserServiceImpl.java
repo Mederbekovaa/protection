@@ -59,9 +59,9 @@ public class UserServiceImpl implements UserService {
 
         UserRoleEntity userRoleEntity = new UserRoleEntity();
         if (userModel.getLogin().contains("admin")) {
-            userRoleEntity.setRole(roleRepository.getByNameRole("Admin"));
+            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_Admin"));
         } else {
-            userRoleEntity.setRole(roleRepository.getByNameRole("User"));
+            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_User"));
         }
         userRoleEntity.setUser(userRepository.save(userEntity));
         userRoleRepository.save(userRoleEntity);

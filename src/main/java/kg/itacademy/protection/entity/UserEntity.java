@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@Builder
+//@Builder
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
