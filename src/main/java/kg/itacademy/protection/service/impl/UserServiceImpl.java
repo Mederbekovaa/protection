@@ -35,14 +35,9 @@ public class UserServiceImpl implements UserService {
     final PasswordEncoder passwordEncoder;
 
     @Override
-    public TokenModel getToken(UserAuthModel userAuthDto) {
+    public TokenModel getAuthToken(UserAuthModel userAuthDto) {
         UserEntity userEntity = userRepository
                 .getByLogin(userAuthDto.getLogin());
-
-
-        //логика обновления deviceId.
-        //Сравниваешь из бд deviceId и из модельк deviceId, если они разные то обновляешь поле deviceId в энтити
-        //если одинаковые то ничего не обновляешь
          if (userEntity == null) {
             throw new UserNameNotFoundException("Username not found");
         }
@@ -59,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public TokenModel createUser(UserModel userModel) {
+    public TokenModel register(UserModel userModel) {
         UserEntity userEntity = UserMapper.INSTANCE.toEntity(userModel);
 
         UserRoleEntity userRoleEntity = new UserRoleEntity();

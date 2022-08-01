@@ -5,7 +5,7 @@ import kg.itacademy.protection.model.UserAuthModel;
 import kg.itacademy.protection.model.UserModel;
 
 public interface UserService {
-    TokenModel getToken(UserAuthModel userAuthDto);
+    TokenModel getAuthToken(UserAuthModel userAuthDto);
 
-    TokenModel createUser(UserModel userModel);
+    TokenModel register(UserModel userModel);
 }

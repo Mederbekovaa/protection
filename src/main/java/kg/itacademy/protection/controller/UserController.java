@@ -23,11 +23,11 @@ public class UserController {
 
     @PostMapping(path = "/sign-in")
     public TokenModel getAuthToken(@RequestBody UserAuthModel userAuthDto) {
-        return userService.getToken(userAuthDto);
+        return userService.getAuthToken(userAuthDto);
     }
 
     @PostMapping(path = "/sign-up")
     public TokenModel register(@Valid @RequestBody UserModel userModel) {
-        return userService.createUser(userModel);
+        return userService.register(userModel);
     }
 }

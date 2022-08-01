@@ -43,10 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-
-                .antMatchers(HttpMethod.POST, "/api/info/create").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/api/info/update").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "/api/info/delete").hasRole("USER")
+                
 
                 .antMatchers(HttpMethod.POST, "/api/parent/create").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/api/parent/update").hasRole("USER")

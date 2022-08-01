@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ChildParent extends BaseEntity {
+public class ChildParent extends BaseEntity  {
     @OneToOne
     @JoinColumn(name = "parent_id", nullable = false)
     UserEntity parentId;

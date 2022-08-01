@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -18,8 +17,5 @@ public class ParentEntity extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     String name;
-
-    @Column(name = "number", nullable = false)
-    String number;
 
 }

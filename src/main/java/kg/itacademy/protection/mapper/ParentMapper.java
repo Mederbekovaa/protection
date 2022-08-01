@@ -1,8 +1,6 @@
 package kg.itacademy.protection.mapper;
 
-import kg.itacademy.protection.entity.InfoEntity;
 import kg.itacademy.protection.entity.ParentEntity;
-import kg.itacademy.protection.model.InfoModel;
 import kg.itacademy.protection.model.ParentModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

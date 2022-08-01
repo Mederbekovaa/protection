@@ -9,12 +9,7 @@ public class ProtectionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProtectionApplication.class, args);
 	}
-//    // запрос и подтверждение
-//    //stmt
-//    // онлайн аукцион
-//    // mail сендер
-	// удалить связь
-	// номер и имя
-	// проверить в постмане
-	// регистр сделать запрос
+
+    // онлайн аукцион
+
 }
