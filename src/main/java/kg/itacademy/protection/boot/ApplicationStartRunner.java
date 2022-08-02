@@ -4,7 +4,9 @@ import kg.itacademy.protection.entity.RoleEntity;
 import kg.itacademy.protection.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ApplicationStartRunner implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepository;

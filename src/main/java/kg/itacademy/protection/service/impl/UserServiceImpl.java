@@ -56,18 +56,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public TokenModel register(UserModel userModel) {
         UserEntity userEntity = UserMapper.INSTANCE.toEntity(userModel);
-
+        userEntity.setPassword(passwordEncoder.encode(userModel.getPassword()));
+        userEntity.setToken(
+                "Basic " + new String(Base64.getEncoder()
+                        .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes()))
+        );
+        userRepository.save(userEntity);
         UserRoleEntity userRoleEntity = new UserRoleEntity();
         if (userModel.getRole().contains("ROLE_PARENT")) {
             userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_PARENT"));
         } else {
             userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_CHILD"));
         }
-        userEntity.setToken(
-                "Basic " + new String(Base64.getEncoder()
-                        .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes()))
-        );
-        userRoleEntity.setUser(userRepository.save(userEntity));
+        userRoleEntity.setUser(userEntity);
         userRoleRepository.save(userRoleEntity);
 
         return TokenModel.builder()
