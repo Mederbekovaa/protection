@@ -58,16 +58,20 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = UserMapper.INSTANCE.toEntity(userModel);
 
         UserRoleEntity userRoleEntity = new UserRoleEntity();
-        if (userModel.getLogin().contains("admin")) {
-            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_Admin"));
+        if (userModel.getRole().contains("ROLE_PARENT")) {
+            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_PARENT"));
         } else {
-            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_User"));
+            userRoleEntity.setRole(roleRepository.getByNameRole("ROLE_CHILD"));
         }
+        userEntity.setToken(
+                "Basic " + new String(Base64.getEncoder()
+                        .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes()))
+        );
         userRoleEntity.setUser(userRepository.save(userEntity));
         userRoleRepository.save(userRoleEntity);
 
-        return TokenModel.builder().token("Basic " + new String(Base64.getEncoder()
-                .encode((userEntity.getLogin() + ":" + userModel.getPassword()).getBytes())))
+        return TokenModel.builder()
+                .token(userEntity.getToken())
                 .login(userEntity.getLogin())
                 .userId(userEntity.getId()).build();
     }

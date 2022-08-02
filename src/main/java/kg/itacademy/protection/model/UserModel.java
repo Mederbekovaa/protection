@@ -23,9 +23,9 @@ public class UserModel {
     private String password;
 
     @NotBlank
-    private String token;
+    private String role;
 
     @NotBlank
-    private String role;
+    private String deviceId;
 
 }

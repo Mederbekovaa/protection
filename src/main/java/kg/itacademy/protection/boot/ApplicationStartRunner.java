@@ -12,16 +12,19 @@ public class ApplicationStartRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        RoleEntity roleUser = new RoleEntity();
-        roleUser.setNameRole("ROLE_USER");
+        if (roleRepository.getByNameRole("ROLE_PARENT") != null) {
+            return;
+        }
 
-        RoleEntity roleParent = new RoleEntity();
-        roleParent.setNameRole("ROLE_ADMIN");
+        RoleEntity parent = new RoleEntity();
+        parent.setNameRole("ROLE_PARENT");
+
+        RoleEntity child = new RoleEntity();
+        child.setNameRole("ROLE_CHILD");
 
 
-
-        roleRepository.save(roleUser);
-        roleRepository.save(roleParent);
+        roleRepository.save(parent);
+        roleRepository.save(child);
     }
 }
 
