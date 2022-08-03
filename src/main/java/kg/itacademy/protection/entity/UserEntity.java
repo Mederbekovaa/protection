@@ -25,7 +25,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = false)
     String password;
 
-    @Column(name = "device_id" )
+    @Column(name = "device_id")
     String deviceId;
 
 }

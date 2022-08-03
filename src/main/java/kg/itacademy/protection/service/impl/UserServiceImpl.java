@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         }
         boolean isMatches = passwordEncoder.matches(userAuthDto.getPassword(), userEntity.getPassword());
         if (isMatches) {
-            if (!userEntity.getDeviceId().equals(userAuthDto.getDeviceId())) {
+            if (userEntity.getDeviceId() != null && (!userEntity.getDeviceId().equals(userAuthDto.getDeviceId()))) {
                 userEntity.setDeviceId(userAuthDto.getDeviceId());
                 userRepository.save(userEntity);
             }

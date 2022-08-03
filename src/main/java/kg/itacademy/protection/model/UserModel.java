@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserModel {
     @NotBlank
