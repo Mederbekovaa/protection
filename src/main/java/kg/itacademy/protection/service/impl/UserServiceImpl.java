@@ -4,6 +4,7 @@ import kg.itacademy.protection.entity.UserEntity;
 import kg.itacademy.protection.entity.UserRoleEntity;
 import kg.itacademy.protection.exception.user.UserNameNotFoundException;
 import kg.itacademy.protection.exception.user.UserSignInException;
+import kg.itacademy.protection.exception.user.UserSignUpException;
 import kg.itacademy.protection.mapper.UserMapper;
 import kg.itacademy.protection.model.TokenModel;
 import kg.itacademy.protection.model.UserAuthModel;
@@ -15,7 +16,6 @@ import kg.itacademy.protection.service.UserService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -53,12 +53,15 @@ public class UserServiceImpl implements UserService {
                     .login(userEntity.getLogin())
                     .build();
         } else {
-            throw new UserSignInException("Неправильный логин или пароль!", HttpStatus.UNAUTHORIZED);
+            throw new UserSignInException("Неправильный логин или пароль!");
         }
     }
 
     @Override
     public TokenModel register(UserModel userModel) {
+        if (userRepository.getByLogin(userModel.getLogin()) != null) {
+            throw new UserSignUpException("Логин уже существует");
+        }
         UserEntity userEntity = UserMapper.INSTANCE.toEntity(userModel);
         userEntity.setPassword(passwordEncoder.encode(userModel.getPassword()));
         userRepository.save(userEntity);

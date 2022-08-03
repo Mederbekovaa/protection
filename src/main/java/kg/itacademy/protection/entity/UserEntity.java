@@ -19,13 +19,13 @@ public class UserEntity extends BaseEntity {
     @Column(name = "login", unique = true)
     String login;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     String email;
 
-    @Column(name = "password", nullable = false, unique = true)
+    @Column(name = "password", nullable = false)
     String password;
 
-    @Column(name = "device_id", nullable = false )
+    @Column(name = "device_id" )
     String deviceId;
 
 }
