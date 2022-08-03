@@ -25,7 +25,7 @@ public class UserEntity extends BaseEntity {
     @Column(name = "password", nullable = false, unique = true)
     String password;
 
-    @Column(name = "token", nullable = false )
-    String token;
+    @Column(name = "device_id", nullable = false )
+    String deviceId;
 
 }

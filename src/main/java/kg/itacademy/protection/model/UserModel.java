@@ -24,8 +24,4 @@ public class UserModel {
 
     @NotBlank
     private String role;
-
-    @NotBlank
-    private String deviceId;
-
 }

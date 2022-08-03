@@ -18,5 +18,5 @@ public class UserAuthModel {
     String password;
 
     @NotBlank
-    String token;
+    String deviceId;
 }
