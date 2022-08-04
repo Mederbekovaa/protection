@@ -43,15 +43,15 @@ public class UserServiceImpl implements UserService {
         }
         boolean isMatches = passwordEncoder.matches(userAuthDto.getPassword(), userEntity.getPassword());
         if (isMatches) {
-            if (userEntity.getDeviceId() != null &&
-                    (!userEntity.getDeviceId().equals(userAuthDto.getDeviceId()))) {
+//            if (userEntity.getDeviceId() != null &&
+//                    (!userEntity.getDeviceId().equals(userAuthDto.getDeviceId()))) {
                 userEntity.setDeviceId(userAuthDto.getDeviceId());
                 userRepository.save(userEntity);
-            }
+//            }
             return TokenModel.builder()
                     .token("Basic " + new String(Base64.getEncoder().encode((userEntity.getLogin() + ":" + userAuthDto.getPassword()).getBytes())))
                     .userId(userEntity.getId())
-                    .login(userAuthDto.getDeviceId())
+                    .login(userEntity.getLogin())
                     .build();
         } else {
             throw new UserSignInException("Неправильный логин или пароль!");
