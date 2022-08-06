@@ -1,5 +1,10 @@
 package kg.itacademy.protection.service.impl;
 
+import kg.itacademy.protection.entity.ChildEntity;
+import kg.itacademy.protection.exception.user.UserNameNotFoundException;
+import kg.itacademy.protection.model.ChildModel;
+import kg.itacademy.protection.repository.ChildRepository;
+import kg.itacademy.protection.repository.UserRepository;
 import kg.itacademy.protection.service.ChildService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,5 +16,22 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChildServiceImpl implements ChildService {
 
+    final ChildRepository childRepository;
+    final UserRepository userRepository;
 
+    public boolean searchAndSendCodeToChild(String emailChild, Long parentId) {
+
+    }
 }
+
+        //найти пользователя по емайл
+        //если его нет, то выбросить ошибку не найден
+        //если есть, то
+        //ищещь парента, если его нет то кидаешь ошибку
+        //генерируешь 4 значный код с помощью Random
+        //создаешь ChildEntity
+        //сеттишь все что можно в поля, включая generatedCode
+        //сохрянешь
+        // отправляешь generatedCode и емайл парента в класс MailSender
+
+
