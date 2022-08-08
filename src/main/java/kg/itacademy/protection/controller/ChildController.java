@@ -25,7 +25,7 @@ public class ChildController {
     @GetMapping(path = "/get/{email}")
     public ResponseEntity<ChildModel> searchAndSendCodeToChild(@PathVariable("email") String email){
         try {
-            return ResponseEntity.ok(childService.getByEmail(email));
+            return ResponseEntity.ok(childService.searchAndSendCodeToChild());
         } catch (RuntimeException ex) {
             log.error(ex.getMessage(), ex);
             return ResponseEntity
