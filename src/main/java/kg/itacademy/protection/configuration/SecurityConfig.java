@@ -24,14 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .usersByUsernameQuery("SELECT t.login, t.password FROM users t WHERE t.login = ?")
                 .authoritiesByUsernameQuery(
-                        "SELECT u.login, r.name_role " +
+                        "SELECT  r.name_role " +
                                 "FROM users_roles ur " +
                                 "INNER JOIN users u " +
                                 "   on ur.user_id = u.id " +
-                                "INNER JOIN users_roles r " +
+                                "INNER JOIN roles r " +
                                 "   on ur.role_id = r.id " +
                                 "WHERE u.login = ? "
                 );
+
     }
 
     @Override
@@ -43,6 +44,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
+
+                .antMatchers(HttpMethod.GET, "/api/contact/getAll").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/contact/create").hasRole("CHILD")
+                .antMatchers(HttpMethod.PUT, "/api/contact/update").hasRole("CHILD")
+                .antMatchers(HttpMethod.DELETE, "/api/contact/delete").hasRole("CHILD")
 
                 .antMatchers(HttpMethod.GET,"/api/child/get/*").hasRole("PARENT")
 

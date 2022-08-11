@@ -16,7 +16,4 @@ public class ProtectionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProtectionApplication.class, args);
 	}
-// спросить про роли контроллер
-// как добавить в модельку функцию , которая исходя из логина дает роль пользователю при авторизации
-
 }
