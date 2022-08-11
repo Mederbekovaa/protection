@@ -1,7 +1,6 @@
 package kg.itacademy.protection.model;
 
-import kg.itacademy.protection.entity.RoleEntity;
-import kg.itacademy.protection.entity.UserEntity;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -1,5 +1,6 @@
 package kg.itacademy.protection.service.impl;
 
+import kg.itacademy.protection.entity.RoleEntity;
 import kg.itacademy.protection.entity.UserEntity;
 import kg.itacademy.protection.entity.UserRoleEntity;
 import kg.itacademy.protection.exception.user.UserNameNotFoundException;
@@ -43,12 +44,14 @@ public class UserServiceImpl implements UserService {
         }
         boolean isMatches = passwordEncoder.matches(userAuthDto.getPassword(), userEntity.getPassword());
         if (isMatches) {
-                userEntity.setDeviceId(userAuthDto.getDeviceId());
-                userRepository.save(userEntity);
+            userEntity.setDeviceId(userAuthDto.getDeviceId());
+            userRepository.save(userEntity);
+
             return TokenModel.builder()
                     .token("Basic " + new String(Base64.getEncoder().encode((userEntity.getLogin() + ":" + userAuthDto.getPassword()).getBytes())))
                     .userId(userEntity.getId())
                     .login(userEntity.getLogin())
+                    .role(roleRepository.findRoleByLogin(userEntity.getLogin()))
                     .build();
         } else {
             throw new UserSignInException("Неправильный логин или пароль!");
@@ -74,6 +77,7 @@ public class UserServiceImpl implements UserService {
 
         return TokenModel.builder()
                 .login(userEntity.getLogin())
-                .userId(userEntity.getId()).build();
+                .userId(userEntity.getId())
+                .build();
     }
 }

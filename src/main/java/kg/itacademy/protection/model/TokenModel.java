@@ -15,4 +15,6 @@ public class TokenModel {
     private String login;
 
     private String token;
+
+    private String role;
 }

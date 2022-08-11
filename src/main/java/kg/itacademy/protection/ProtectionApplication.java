@@ -17,6 +17,6 @@ public class ProtectionApplication {
 		SpringApplication.run(ProtectionApplication.class, args);
 	}
 // спросить про роли контроллер
-	// childModel передавать Entity . как правильно?
+// как добавить в модельку функцию , которая исходя из логина дает роль пользователю при авторизации
 
 }

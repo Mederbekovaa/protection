@@ -44,12 +44,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
 
-                .antMatchers(HttpMethod.GET,"/api/child/get/{email}/{parentId}").hasRole("PARENT")
+                .antMatchers(HttpMethod.GET,"/api/child/get/*").hasRole("PARENT")
 
                 .antMatchers("/api/user/sign-in").permitAll()
                 .antMatchers("/api/user/sign-up").permitAll()
 
                 .antMatchers("/api/role/create").permitAll()
+
+                .antMatchers("/swagger-ui.html/*").permitAll()
 
                 .and()
                 .httpBasic();
