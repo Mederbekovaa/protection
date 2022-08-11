@@ -1,5 +1,7 @@
 package kg.itacademy.protection.util;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -9,14 +11,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Objects;
 
 @Component
-public class MailSender {
-    final JavaMailSender javaMailSender;
-    final Environment environment;
-
-    public MailSender(JavaMailSender javaMailSender, Environment environment) {
-        this.javaMailSender = javaMailSender;
-        this.environment = environment;
-    }
+@AllArgsConstructor
+@Slf4j
+public class MailSenderComponent {
+    private final JavaMailSender javaMailSender;
+    private final Environment environment;
 
     public boolean sendMail(String email, String text) {
         try {
@@ -31,6 +30,7 @@ public class MailSender {
 
             return true;
         } catch (Exception ignored) {
+            log.error(ignored.getMessage(), ignored);
             return false;
         }
     }

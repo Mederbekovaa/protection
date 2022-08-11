@@ -22,10 +22,12 @@ public class ChildController {
 
     @Autowired
     private ChildService childService;
-    @GetMapping(path = "/get/{email}")
-    public ResponseEntity<ChildModel> searchAndSendCodeToChild(@PathVariable("email") String email){
+
+    @GetMapping(path = "/get/{email}/{parentId}")
+    public ResponseEntity<ChildModel> searchAndSendCodeToChild(@PathVariable("email") String email,
+                                                               @PathVariable("parentId") Long parentId) {
         try {
-            return ResponseEntity.ok(childService.searchAndSendCodeToChild());
+                return ResponseEntity.ok(childService.searchAndSendCodeToChild(email, parentId));
         } catch (RuntimeException ex) {
             log.error(ex.getMessage(), ex);
             return ResponseEntity

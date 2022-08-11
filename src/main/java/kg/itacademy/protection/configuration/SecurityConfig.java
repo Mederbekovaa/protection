@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .usersByUsernameQuery("SELECT t.login, t.password, t.is_active FROM users t WHERE t.login = ?")
+                .usersByUsernameQuery("SELECT t.login, t.password FROM users t WHERE t.login = ?")
                 .authoritiesByUsernameQuery(
                         "SELECT u.login, r.name_role " +
                                 "FROM users_roles ur " +
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 "   on ur.user_id = u.id " +
                                 "INNER JOIN users_roles r " +
                                 "   on ur.role_id = r.id " +
-                                "WHERE u.login = ? AND u.is_active = true"
+                                "WHERE u.login = ? "
                 );
     }
 
@@ -43,12 +43,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors().disable()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/parent/create").hasRole("USER")
-                .antMatchers(HttpMethod.PUT, "/api/parent/update").hasRole("USER")
-                .antMatchers(HttpMethod.DELETE, "/api/parent/delete").hasRole("USER")
-                .antMatchers("/api/role/create").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET,"/api/child/get/{email}/{parentId}").hasRole("PARENT")
+
                 .antMatchers("/api/user/sign-in").permitAll()
                 .antMatchers("/api/user/sign-up").permitAll()
+
+                .antMatchers("/api/role/create").permitAll()
+
                 .and()
                 .httpBasic();
     }

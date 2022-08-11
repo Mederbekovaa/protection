@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserRoleModel {
-    UserEntity user;
-    RoleEntity role;
+    Long userId;
+    Long roleId;
 }

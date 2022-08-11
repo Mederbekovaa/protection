@@ -1,5 +1,6 @@
 package kg.itacademy.protection.entity;
 
+import kg.itacademy.protection.model.UserModel;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -7,10 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 @Entity
 @Getter
 @Setter
-//@Builder
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,5 +28,4 @@ public class UserEntity extends BaseEntity {
 
     @Column(name = "device_id")
     String deviceId;
-
 }
